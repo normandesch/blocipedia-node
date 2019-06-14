@@ -1,7 +1,7 @@
 {
-  "name": "blocipedia-node",
+  "name": "blocipedia",
   "version": "1.0.0",
-  "description": "",
+  "description": "An application that allows uers to create, collabortate, and share wikis.",
   "main": "index.js",
   "scripts": {
     "test": "export NODE_ENV=test&& jasmine",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/normandesch/blocipedia-node.git"
   },
-  "author": "",
+  "author": "Norman Desch",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/normandesch/blocipedia-node/issues"
@@ -22,7 +22,19 @@
     "request": "^2.83.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
     "dotenv": "^5.0.0",
-    "express": "^4.16.2"
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.2",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.32.6"
   }
 }

@@ -2,8 +2,9 @@ const Wiki = require("../../src/db/models").Wiki;
 const User = require("../../src/db/models").User;
 const sequelize = require("../../src/db/models/index").sequelize;
 
-describe("Topic", () => {
+describe("Wiki", () => {
   beforeEach(done => {
+    this.wiki;
     this.user;
     sequelize.sync({ force: true }).then(res => {
       User.create({

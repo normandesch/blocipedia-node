@@ -18,6 +18,7 @@ describe("Wiki", () => {
         Wiki.create({
           title: "JavaScript",
           body: "JS frameworks and fundamentals",
+          private: false,
           userId: user.id
         }).then(wiki => {
           this.wiki = wiki;
@@ -31,7 +32,10 @@ describe("Wiki", () => {
     it("should create a wiki object and store it in the database", done => {
       Wiki.create({
         title: "Created wiki",
-        body: "Created wiki description"
+        body: "Created wiki description",
+        private: false,
+        userId: user.id
+
       })
       .then(newWiki => {
          expect(newWiki.title).toBe("Created wiki");
@@ -46,7 +50,10 @@ describe("Wiki", () => {
 
     it("should not create a wiki object without a description", done => {
       Wiki.create({
-        title: "Wiki without a description"
+        title: "Wiki without a description",
+        body: "No description",
+        private: false,
+        userId: user.id
       })
         .then(wiki => {
           done();

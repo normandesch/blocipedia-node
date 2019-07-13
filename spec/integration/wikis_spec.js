@@ -34,6 +34,7 @@ describe("routes : wikis", () => {
           Wiki.create({
               title: "JavaScript",
               body: "JS frameworks and fundamentals",
+              private: false,
               userId: user.id
             })
             .then(wiki => {

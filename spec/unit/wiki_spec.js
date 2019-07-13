@@ -1,24 +1,23 @@
-const sequelize = require("../../src/db/models/index").sequelize;
-const User = require("../../src/db/models").User;
 const Wiki = require("../../src/db/models").Wiki;
+const User = require("../../src/db/models").User;
+const sequelize = require("../../src/db/models/index").sequelize;
 
-describe("Wiki", () => {
+describe("Topic", () => {
   beforeEach(done => {
     this.user;
-    this.wiki;
     sequelize.sync({ force: true }).then(res => {
       User.create({
-        username: "Samantha Gabbler",
-        email: "sgabbler@gmail.com",
-        password: "123456789"
+        username: "bathmatt",
+        email: "bathmatt@gmail.com",
+        password: "bath808080",
+        role: "member"
       }).then(user => {
         this.user = user;
 
         Wiki.create({
-          title: "Harps",
-          body: "If you love harps, visit here!",
-          private: false,
-          userId: this.user.id
+          title: "JavaScript",
+          body: "JS frameworks and fundamentals",
+          userId: user.id
         }).then(wiki => {
           this.wiki = wiki;
           done();
@@ -28,18 +27,14 @@ describe("Wiki", () => {
   });
 
   describe("#create()", () => {
-    it("should create a wiki object with a title,body,privacy status and assigned user", done => {
+    it("should create a wiki object and store it in the database", done => {
       Wiki.create({
-        title: "Cat Pants",
-        body: "We love clothes made of cat hair!",
-        private: false,
-        userId: this.user.id
+        title: "Created wiki",
+        body: "Created wiki description"
       })
-        .then(wiki => {
-          expect(wiki.title).toBe("Cat Pants");
-          expect(wiki.body).toBe("We love clothes made of cat hair!");
-          expect(wiki.private).toBeFalsy();
-          expect(wiki.userId).toBe(this.user.id);
+      .then(newWiki => {
+         expect(newWiki.title).toBe("Created wiki");
+         expect(newWiki.body).toBe("Created wiki description");
           done();
         })
         .catch(err => {
@@ -48,45 +43,17 @@ describe("Wiki", () => {
         });
     });
 
-    it("should not create a wiki object with a missing title, body or assigned user", done => {
+    it("should not create a wiki object without a description", done => {
       Wiki.create({
-        title: "Cat Pants"
+        title: "Wiki without a description"
       })
         .then(wiki => {
           done();
         })
         .catch(err => {
           expect(err.message).toContain("Wiki.body cannot be null");
-          expect(err.message).toContain("Wiki.private cannot be null");
-          expect(err.message).toContain("Wiki.userId cannot be null");
-          done();
-        });
-    });
 
-    describe("#setUser()", () => {
-      it("should associate a user and a wiki together", done => {
-        User.create({
-          username: "Norman Desch",
-          email: "normandesch3@gmail.com",
-          password: "1234567890"
-        }).then(newUser => {
-          expect(this.wiki.userId).toBe(this.user.id);
-
-          this.wiki.setUser(newUser).then(wiki => {
-            expect(wiki.userId).toBe(newUser.id);
-            done();
-          });
         });
-      });
-    });
-
-    describe("getUser", () => {
-      it("should return the associated user", done => {
-        this.wiki.getUser().then(associatedUser => {
-          expect(associatedUser.username).toBe("Samantha Gabbler");
-          done();
-        });
-      });
     });
   });
 });

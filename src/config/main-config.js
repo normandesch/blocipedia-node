@@ -10,6 +10,7 @@ const passportConfig = require("./passport-config");
 
 module.exports = {
   init(app, express) {
+    app.use(logger("dev"));
     app.set("views", viewsFolder);
     app.set("view engine", "ejs");
     app.use(express.static(path.join(__dirname, "..", "assets")));
@@ -20,7 +21,7 @@ module.exports = {
         secret: process.env.cookieSecret,
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1.21e9 } //set cookie to expire in 14 days
+        cookie: { maxAge: 1.21e9 } 
       })
     );
     app.use(flash());

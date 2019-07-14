@@ -40,12 +40,7 @@ describe("routes : wikis", () => {
             .then(wiki => {
               this.wiki = wiki;
               done();
-            })
-            .catch(err => {
-              console.log(err);
-              done();
-            });
-        })
+            }}
         .catch(err => {
           console.log(err);
           done();

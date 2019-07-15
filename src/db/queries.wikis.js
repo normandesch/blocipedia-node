@@ -1,10 +1,11 @@
 require("dotenv").config();
-const Authorizer = require("../policies/wiki");
 const Wiki = require("./models").Wiki;
+const Authorizer = require("../policies/wiki");
 
 module.exports = {
   getAllWikis(callback) {
     return Wiki.findAll()
+
       .then(wikis => {
         callback(null, wikis);
       })
@@ -43,7 +44,6 @@ module.exports = {
       if (!wiki) {
         return callback("Wiki not found");
       }
-
       const authorized = new Authorizer(req.user, wiki).update();
 
       if (authorized) {

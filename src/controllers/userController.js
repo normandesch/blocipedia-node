@@ -1,12 +1,12 @@
-const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
+const userQueries = require("../db/queries.users.js");
 
 module.exports = {
   signUp(req, res, next) {
     res.render("users/sign_up");
   },
-  create(req, res, next) {
 
+  create(req, res, next) {
     let newUser = {
       username: req.body.username,
       email: req.body.email,
@@ -20,22 +20,19 @@ module.exports = {
         res.redirect("/users/sign_up");
       } else {
         passport.authenticate("local")(req, res, () => {
-          req.flash("notice", "You've successfully signed up!");
+          req.flash("notice", "You've signed up!");
           res.redirect("/");
         });
       }
     });
   },
 
-  signUp(req, res, next) {
-    res.render("users/sign_up");
-  },
-
   signInForm(req, res, next) {
     res.render("users/sign_in");
   },
+
   signIn(req, res, next) {
-    passport.authenticate("local")(req, res, function() {
+    passport.authenticate("local")(req, res, () => {
       if (!req.user) {
         req.flash("notice", "Sign in failed. Please try again.");
         res.redirect("/users/sign_in");
@@ -44,12 +41,11 @@ module.exports = {
         res.redirect("/");
       }
     });
-},
+  },
 
-signOut(req, res, next) {
-   req.logout();
-   req.flash("notice", "You've successfully signed out!");
-   res.redirect("/");
- }
-
+  signOut(req, res, next) {
+    req.logout();
+    req.flash("notice", "You've successfully signed out!");
+    res.redirect("/");
+  }
 };

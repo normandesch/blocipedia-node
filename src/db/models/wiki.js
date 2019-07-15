@@ -1,8 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   var Wiki = sequelize.define(
-    "Wiki",
-    {
+    "Wiki", {
       title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -13,18 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       private: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
-      },
-      userId: {
-        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: false
       }
-    },
-    {}
+    }, {}
   );
   Wiki.associate = function(models) {
-    // associations can be defined here
     Wiki.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE"

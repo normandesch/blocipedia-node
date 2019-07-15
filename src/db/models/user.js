@@ -1,8 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define(
-    "User",
-    {
+    "User", {
       username: {
         type: DataTypes.STRING,
         allowNull: false
@@ -11,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isEmail: { msg: "must be a valid email" }
+          isEmail: {
+            msg: "must be a valid email"
+          }
         }
       },
       password: {
@@ -21,10 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "member"
+        defaultValue: "standard"
       }
-    },
-    {}
+    }, {}
   );
   User.associate = function(models) {
     User.hasMany(models.Wiki, {
@@ -39,9 +39,11 @@ module.exports = (sequelize, DataTypes) => {
     User.prototype.isOwner = function() {
       return this.role === "owner";
     };
-
-    User.prototype.isMember = function() {
-      return this.role === "member";
+    User.prototype.isPremium = function() {
+      return this.role === "premium";
+    }
+    User.prototype.isstandard = function() {
+      return this.role === "standard";
     };
   };
 

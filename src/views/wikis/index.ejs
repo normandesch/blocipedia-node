@@ -8,14 +8,14 @@
 <body>
   <main class="container">
     <% include ../static/partials/navbar.ejs %>
+
     <% include ../static/partials/messages.ejs %>
 
     <h1>Wikis</h1>
-
     <% if(currentUser) { %>
-           <a href="/wikis/new" class="btn btn-success">New Wikis</a>
-           <% } %>
-             <ul class="list-group">
+    <a href="/wikis/new" class="btn btn-success">New Wikis</a>
+    <% } %>
+    <ul class="list-group">
 
       <% wikis.forEach((wiki) => { %>
       <li class="list-group-item">
@@ -25,7 +25,6 @@
       </li>
       <% }) %>
     </ul>
-
   </main>
 </body>
 

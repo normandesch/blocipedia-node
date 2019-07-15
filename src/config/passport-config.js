@@ -1,6 +1,6 @@
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 const User = require("../db/models").User;
+const LocalStrategy = require("passport-local").Strategy;
 const authHelper = require("../auth/helpers");
 
 module.exports = {
@@ -22,6 +22,7 @@ module.exports = {
                 message: "Invalid username or password"
               });
             }
+
             return done(null, user);
           });
         }

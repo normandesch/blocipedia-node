@@ -6,7 +6,7 @@ module.exports = class ApplicationPolicy {
   }
 
   _isOwner() {
-    return this.record && (this.record.userId == this.user.id);
+    return this.record && this.record.userId == this.user.id;
   }
 
   _isAdmin() {
@@ -17,8 +17,8 @@ module.exports = class ApplicationPolicy {
     return this.user && this.user.role == "premium";
   }
 
-  _isStandard() {
-    return this.user && this.user.role == "standard";
+  _isMember() {
+    return this.user && this.user.role == "member";
   }
 
   new() {
@@ -34,8 +34,7 @@ module.exports = class ApplicationPolicy {
   }
 
   edit() {
-    return this.new() &&
-      this.record && (this._isStandard() || this.is_Owner());
+    return this.new() && this.record && (this._isMember() || this.is_Owner());
   }
 
   update() {
@@ -45,4 +44,4 @@ module.exports = class ApplicationPolicy {
   destroy() {
     return this.update();
   }
-}
+};

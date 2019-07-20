@@ -15,7 +15,7 @@ module.exports = {
   },
 
   getWiki(id, callback) {
-    return Wiki.findById(id)
+    return Wiki.findByPk(id)
       .then(wiki => {
         callback(null, wiki);
       })
@@ -40,7 +40,7 @@ module.exports = {
   },
 
   updateWiki(req, updatedWiki, callback) {
-    return Wiki.findById(req.params.id).then(wiki => {
+    return Wiki.findByPk(req.params.id).then(wiki => {
       if (!wiki) {
         return callback("Wiki not found");
       }
@@ -65,7 +65,7 @@ module.exports = {
   },
 
   deleteWiki(req, callback) {
-    return Wiki.findById(req.params.id)
+    return Wiki.findByPk(req.params.id)
       .then(wiki => {
         const authorized = new Authorizer(req.user, wiki).destroy();
         if (authorized) {

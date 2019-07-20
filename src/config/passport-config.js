@@ -22,6 +22,7 @@ module.exports = {
                 message: "Invalid username or password"
               });
             }
+
             return done(null, user);
           });
         }
@@ -33,7 +34,7 @@ module.exports = {
     });
 
     passport.deserializeUser((id, callback) => {
-      User.findById(id)
+      User.findByPk(id)
         .then(user => {
           callback(null, user);
         })

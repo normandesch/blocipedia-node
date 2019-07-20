@@ -2,7 +2,7 @@ const Wiki = require("../../src/db/models").Wiki;
 const User = require("../../src/db/models").User;
 const sequelize = require("../../src/db/models/index").sequelize;
 
-describe("Topic", () => {
+describe("Wiki", () => {
   beforeEach(done => {
     this.user;
     sequelize.sync({ force: true }).then(res => {
@@ -45,7 +45,8 @@ describe("Topic", () => {
 
     it("should not create a wiki object without a description", done => {
       Wiki.create({
-        title: "Wiki without a description"
+        title: "Wiki without a description",
+        body: "null"
       })
         .then(wiki => {
           done();

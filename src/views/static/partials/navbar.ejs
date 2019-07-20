@@ -9,9 +9,12 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
 
-        <% if(currentUser) { %>
+       <% if(currentUser && currentUser.role === "premium") { %>
           <li class="nav-item">
             <a class="nav-link" href="/wikis">Wikis</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/users/upgrade">Downgrade Membership</a>
           </li>
           <li>
             <a class="nav-link" href="/users/sign_out">Sign out</a>

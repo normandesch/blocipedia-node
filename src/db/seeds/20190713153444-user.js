@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const faker = require("faker");
 
 let users = [{
@@ -7,7 +7,7 @@ let users = [{
     password: "leslieknope",
     createdAt: new Date(),
     updatedAt: new Date(),
-    role: "standard"
+    role: "member"
   },
   {
     username: "dinersdriveins",
@@ -15,7 +15,7 @@ let users = [{
     password: "flayitup",
     createdAt: new Date(),
     updatedAt: new Date(),
-    role: "standard"
+    role: "member"
   },
   {
     username: "katiebeck",
@@ -23,7 +23,7 @@ let users = [{
     password: "beckle56",
     createdAt: new Date(),
     updatedAt: new Date(),
-    role: "standard"
+    role: "member"
   }
 ];
 
@@ -35,7 +35,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    
+
     return queryInterface.bulkDelete("Users", null, {});
 
   }

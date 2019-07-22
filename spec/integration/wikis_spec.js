@@ -48,7 +48,7 @@ describe("routes : wikis", () => {
 
     });
 
-  });
+    });
 
     describe("GET /wikis", () => {
       it("should render the wikis index page", done => {
@@ -64,7 +64,7 @@ describe("routes : wikis", () => {
       it("should render a view with a new wiki form", done => {
         request.get(`${base}new`, (err, res, body) => {
           expect(err).toBeNull();
-          expect(body).toContain("Wikis");
+          expect(body).toContain("JavaScript");
           done();
         });
       });

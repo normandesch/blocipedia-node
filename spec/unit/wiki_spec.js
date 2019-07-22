@@ -2,7 +2,7 @@ const Wiki = require("../../src/db/models").Wiki;
 const User = require("../../src/db/models").User;
 const sequelize = require("../../src/db/models/index").sequelize;
 
-describe("Wiki", () => {
+describe("Topic", () => {
   beforeEach(done => {
     this.user;
     sequelize.sync({ force: true }).then(res => {
@@ -38,6 +38,7 @@ describe("Wiki", () => {
           done();
         })
         .catch(err => {
+          expect(err).toBeNull();
           console.log(err);
           done();
         });
@@ -45,15 +46,14 @@ describe("Wiki", () => {
 
     it("should not create a wiki object without a description", done => {
       Wiki.create({
-        title: "Wiki without a description",
-        body: "null"
+        title: "Wiki without a description"
       })
         .then(wiki => {
           done();
         })
         .catch(err => {
           expect(err.message).toContain("Wiki.body cannot be null");
-
+done();
         });
     });
   });

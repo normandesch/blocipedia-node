@@ -5,13 +5,27 @@
   <% include ../static/partials/head.ejs %>
 </head>
 
+<style>
+  body {
+    padding-top: 53px;
+  }
+
+  h1 {
+    padding-top: 53px;
+  }
+
+  h2 {
+    padding-top: 53px;
+  }
+</style>
+
 <body>
   <% include ../static/partials/navbar.ejs %>
   <main class="container">
     <% include ../static/partials/messages.ejs %>
     <% if(currentUser && currentUser.role == "member") { %>
     <h1>Become a premium member!</h1>
-    <h1>Only $13!</h1>
+    <h1>Only $15!</h1>
     <ul>
       <li>Create private wikis!</li>
       <li>Collaborate with other private members!</li>
@@ -24,9 +38,9 @@
     <% } %>
     <% if(currentUser && currentUser.role == "premium") { %>
     <h1>Are you sure you want to downgrade?</h1>
-    <h2>You will miss out on all being a Premium user!</h2>
+    <h2>You will miss out on being a Premium user!</h2>
     <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-      <button type="submit" class="btn btn-danger">Downgrade your account!</button>
+      <button type="submit" class="btn btn-danger">Downgrade My Account!</button>
     </form>
     <% } %>
   </main>

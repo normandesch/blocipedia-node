@@ -45,14 +45,11 @@ describe("routes : wikis", () => {
               done();
             });
         })
-        .catch(err => {
-          console.log(err);
-          done();
-        });
+
     });
 
     describe("GET /wikis", () => {
-      it("should render the wiki index page", done => {
+      it("should render the wikis index page", done => {
         request.get(base, (err, res, body) => {
           expect(err).toBeNull();
           expect(body).toContain("Wikis");
@@ -78,6 +75,7 @@ describe("routes : wikis", () => {
           form: {
             title: "New wiki",
             body: "New wiki body",
+            private: true,
             userId: this.user.id
           }
         };
@@ -171,6 +169,15 @@ describe("routes : wikis", () => {
           }
         );
       });
+    });
+  });
+  describe("GET /wikis", () => {
+      it("should render the wiki index page", done => {
+        request.get(`${base}private`, (err, res, body) => {
+         expect(err).toBeNull();
+         expect(body).toContain("Wiki");
+         done();
+      })
     });
   });
 });

@@ -48,6 +48,8 @@ describe("routes : wikis", () => {
 
     });
 
+  });
+
     describe("GET /wikis", () => {
       it("should render the wikis index page", done => {
         request.get(base, (err, res, body) => {
@@ -62,7 +64,7 @@ describe("routes : wikis", () => {
       it("should render a view with a new wiki form", done => {
         request.get(`${base}new`, (err, res, body) => {
           expect(err).toBeNull();
-          expect(body).toContain("JavaScript");
+          expect(body).toContain("Wikis");
           done();
         });
       });
@@ -170,7 +172,7 @@ describe("routes : wikis", () => {
         );
       });
     });
-  });
+
   describe("GET /wikis", () => {
       it("should render the wiki index page", done => {
         request.get(`${base}private`, (err, res, body) => {

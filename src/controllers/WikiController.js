@@ -2,9 +2,11 @@ const wikiQueries = require("../db/queries.wikis.js");
 const Authorizer = require("../policies/application");
 
 module.exports = {
+
   index(req, res, next) {
     wikiQueries.getAllWikis((err, wikis) => {
       if (err) {
+        console.log(err);
         res.redirect(500, "static/index");
       } else {
         res.render("wikis/index", {
@@ -13,6 +15,7 @@ module.exports = {
       }
     });
   },
+
   new(req, res, next) {
     const authorized = new Authorizer(req.user).new();
 
@@ -23,6 +26,7 @@ module.exports = {
       res.redirect("/wikis");
     }
   },
+
   create(req, res, next) {
     const authorized = new Authorizer(req.user).create();
 
@@ -45,6 +49,7 @@ module.exports = {
       res.redirect("/wikis");
     }
   },
+
   show(req, res, next) {
     wikiQueries.getWiki(req.params.id, (err, wiki) => {
       if (err || wiki == null) {

@@ -98,7 +98,7 @@ signOut(req, res, next) {
        if(err || user == null){
          res.redirect(404, "/");
        } else {
-         res.render("users/collaborators", {user, collaborator});
+         res.render("users/collaborators", {collaborator});
        }
      });
 

@@ -21,26 +21,28 @@ describe("User", () => {
 
     it("should create a User object with a valid name,email and password", (done) => {
       User.create({
-        name: "Emily Carey",
-        email: "user@example.com",
-        password: "1234567890"
-      })
-      .then((user) => {
-        expect(user.email).toBe("user@example.com");
-        expect(user.name).toBe("Emily Carey")
-        expect(user.id).toBe(1);
-        done();
-      })
-      .catch((err) => {
-        console.log(err);
-        done();
+       username: "emilycarey",
+       email: "user@example.com",
+       password: "1234567890"
+     })
+     .then((user) => {
+       expect(user.email).toBe("user@example.com");
+       expect(user.username).toBe("emilycarey")
+       expect(user.id).toBe(1);
+       done();
+     })
+     .catch((err) => {
+       console.log(err);
+       done();
+     });
       });
-    });
+
 
 
     it("should not create a user with invalid email or password", (done) => {
       User.create({
         name: "Mortica Adams",
+        username: "Darkbetch",
         email: "Invalid Email",
         password: "1234567890"
       })
@@ -62,6 +64,7 @@ describe("User", () => {
 // #5
       User.create({
         name: "Balasik",
+        username: "BalasikNagarri",
         email: "user@example.com",
         password: "1234567890"
       })
@@ -69,6 +72,7 @@ describe("User", () => {
 
         User.create({
           name: "Supaman",
+          username: "Supermenn",
           email: "user@example.com",
           password: "what up"
         })

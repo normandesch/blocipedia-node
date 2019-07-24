@@ -50,4 +50,4 @@ module.exports = {
       res.redirect(req.headers.referer);
     }
   }
-}
+};

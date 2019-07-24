@@ -37,9 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       return this.role === "admin";
     };
 
-    console.log('COLLABORATOR IS:', models.Collaborator);
-
-
     User.hasMany(models.Collaborator, {
       foreignKey: 'userId',
       as: 'collaborators'

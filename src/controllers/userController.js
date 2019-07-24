@@ -91,7 +91,7 @@ signOut(req, res, next) {
     res.redirect("/");
   },
 
-   showcollaborator(req, res, next){
+   showCollaborator(req, res, next){
      userQueries.getUser(req.user.id, (err, result) => {
        user = result["user"];
        collaborator = result["collaborator"];
@@ -101,5 +101,7 @@ signOut(req, res, next) {
          res.render("users/collaborators", {collaborator});
        }
      });
+
+}
 
 };

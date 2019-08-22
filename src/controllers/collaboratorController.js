@@ -10,7 +10,7 @@ module.exports = {
   add(req, res, next) {
     collaboratorQueries.add(req, (err, collaborator) => {
       if (err) {
-        req.flash("User not valid.");
+        req.flash("error", "User not valid.");
       }
       res.redirect(req.headers.referer);
     });
